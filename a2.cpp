@@ -23,7 +23,7 @@ int main(int argc, char const *argv[])
   if( argc != 3 ) { cout<<"Solo tiene que ingresar un valor para A y otro para B!"<<endl; }
   else if( a_int < b_int ) { cout<<"Error! A tiene que ser >= que B"<<endl; }
   else if( ( a_int + b_int ) <= 0 ) { cout<<"Error! B tiene que ser > 0 "<<endl; } 
-  else if( ( a_int < 0 ) || ( b_int < 0 ) ) { cout<<"Error! A y B tienen que ser >= 0 "<<endl; }
+  else if( ( mpz_cmp_ui ( a,0 ) < 0 ) || ( mpz_cmp_ui ( b,0 ) < 0 ) ) { cout<<"Error! A y B tienen que ser >= 0 "<<endl; }
   else{   
 
   while( b_int != 0 )
