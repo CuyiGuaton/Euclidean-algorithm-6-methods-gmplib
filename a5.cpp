@@ -78,7 +78,7 @@ int main(int argc, char const *argv[]) {
   }
   // mientras b sea par
   while (mpz_even_p(b) != 0) {
-    mpz_tdiv_q_ui(b, b, 2); // a=a/2
+    mpz_tdiv_q_ui(b, b, 2); // b=b/2
     Div2(s2, t2, A, B);
   }
   // si b>a
@@ -95,15 +95,18 @@ int main(int argc, char const *argv[]) {
   }
 
   // mientras b!=0
-  while (mpz_cmp_ui(b,0) != 0) {
+  while (mpz_cmp_ui(b,0)!=0) {
     mpz_sub(r, a, b);   // r= a-b
     mpz_sub(u, s1, s2); // u = s1-s2
     mpz_sub(v, t1, t2); // v=t1-t2
+    cout<<"pico";
+    /*aquí el error*/
     // mientras r sea par
-    while (mpz_even_p(r) != 0) {
+    while (mpz_odd_p(r) == 0) {
       mpz_tdiv_q_ui(r, r, 2); // r=r/2
       Div2(u, v, A, B);
     }
+    /*aquí el error*/
     if (mpz_cmp(r, b) >= 0) {
       mpz_set(a, r);
       mpz_set(s1, u);
@@ -120,7 +123,7 @@ int main(int argc, char const *argv[]) {
 
 
   mpz_mul(d,d,a);
-  mpz_set(s,s2);
+  mpz_set(s,s1);
   mpz_set(t,t1);
   cout << endl;
   mpz_out_str(stdout, 10, d);
