@@ -94,9 +94,8 @@ int main(int argc, char const *argv[]) {
     mpz_set(t1, v);
   }
 
-/* LOOP INFINTO*/
   // mientras b!=0
-  while (mpz_sgn(b) != 0) {
+  while (mpz_cmp_ui(b,0) != 0) {
     mpz_sub(r, a, b);   // r= a-b
     mpz_sub(u, s1, s2); // u = s1-s2
     mpz_sub(v, t1, t2); // v=t1-t2
@@ -118,7 +117,7 @@ int main(int argc, char const *argv[]) {
       mpz_set(t2, v);
     }
   }
-/* LOOP INFINTO*/
+
 
   mpz_mul(d,d,a);
   mpz_set(s,s2);
