@@ -131,18 +131,19 @@ int main(int argc, char const *argv[]) {
     mpz_set(t, t1);
     cout << endl;
     mpz_out_str(stdout, 10, d);
-    cout << " = ";
+//    cout << " = ";
+    cout << " ";
     mpz_out_str(stdout, 10, s);
-    cout << "*";
-    mpz_out_str(stdout, 10, A);
-    cout << " + ";
+//    cout << "*";
+    cout << " ";
+//    mpz_out_str(stdout, 10, A);
+//    cout << " + ";
     mpz_out_str(stdout, 10, t);
-    cout << "*";
-    mpz_out_str(stdout, 10, B);
+//    cout << "*";
+//    mpz_out_str(stdout, 10, B);
     cout << endl;
 
-    mpz_clear(a);
-    mpz_clear(b);
+
     mpz_clear(d);
     mpz_clear(s);
     mpz_clear(t);
@@ -156,5 +157,7 @@ int main(int argc, char const *argv[]) {
     mpz_clear(A);
     mpz_clear(B);
   }
+  mpz_clear(a);
+  mpz_clear(b);
   return 0;
 }
