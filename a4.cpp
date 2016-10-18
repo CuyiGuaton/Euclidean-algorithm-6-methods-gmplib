@@ -34,43 +34,53 @@ int main(int argc, char const *argv[]) {
   mpz_init(s);
   mpz_init(t);
   mpz_init(d);
-  mpz_init_set_str(a, argv[1],10);
-  mpz_init_set_str(b, argv[2],10);
+  mpz_init_set_str(a, argv[1], 10);
+  mpz_init_set_str(b, argv[2], 10);
   mpz_init_set_ui(s1, 1);
   mpz_init_set_ui(t1, 0);
   mpz_init_set_ui(s2, 0);
-  mpz_init_set_ui(t2,1);
+  mpz_init_set_ui(t2, 1);
 
-  while (mpz_sgn(b)!= 0) {
-     mpz_fdiv_q(q,a,b); //fdiv rounds q down towards -infinity
-     mpz_tdiv_r(r,a,b); //calcula r en a = q*b + r
-     //u <- s1 - q*s2
-     mpz_mul(aux,q,s2);
-     mpz_sub(u, s1,aux);
-     //v <- t1 - q*t2
-     mpz_mul(aux,q,t2);
-     mpz_sub(v, t1,aux);
-     //Se asignan vaolres
-     mpz_set(a,b);
-     mpz_set(s1,s2);
-     mpz_set(t1,t2);
-     mpz_set(b,r);
-     mpz_set(s2,u);
-     mpz_set(t2,v);
+  if (argc != 3)
+    cout << "Error, debe ingresar los parametros a y b de los que sacar el mcd(a,b)";
+  else if (mpz_cmp_ui(a, 0) == 0 || mpz_cmp_ui(b, 0) == 0)
+    cout << "Error, a o b no pueden ser 0";
+  else {
+    while (mpz_cmp_ui(b, 0) != 0) {
+//      mpz_fdiv_q(q, a, b); // fdiv rounds q down towards -infinity
+//      mpz_tdiv_r(r, a, b); // calcula r en a = q*b + r
+
+      mpz_tdiv_q(q, a, b);
+      // r <- a - q*b
+      mpz_mul(aux, q, b);
+      mpz_sub(r, a, aux);
+      // u <- s1 - q*s2
+      mpz_mul(aux, q, s2);
+      mpz_sub(u, s1, aux);
+      // v <- t1 - q*t2
+      mpz_mul(aux, q, t2);
+      mpz_sub(v, t1, aux);
+      // Se asignan vaolres
+      mpz_set(a, b);
+      mpz_set(s1, s2);
+      mpz_set(t1, t2);
+      mpz_set(b, r);
+      mpz_set(s2, u);
+      mpz_set(t2, v);
+    }
+
+    mpz_set(d, a);
+    mpz_set(s, s1);
+    mpz_set(t, t1);
+
+    cout << endl;
+    mpz_out_str(stdout, 10, d);
+    cout << " ";
+    mpz_out_str(stdout, 10, s);
+    cout << " ";
+    mpz_out_str(stdout, 10, t);
+    cout << endl;
   }
-
-  mpz_set(d,a);
-  mpz_set(s,s1);
-  mpz_set(t,t1);
-
-  cout<<endl;
-  mpz_out_str(stdout,10,d);
-  cout<<" ";
-  mpz_out_str(stdout,10,s);
-  cout<<" ";
-  mpz_out_str(stdout,10,t);
-  cout<<endl;
-
   mpz_clear(v);
   mpz_clear(a);
   mpz_clear(b);
