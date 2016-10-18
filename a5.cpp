@@ -144,20 +144,21 @@ int main(int argc, char const *argv[]) {
     cout << endl;
 
 
-    mpz_clear(d);
-    mpz_clear(s);
-    mpz_clear(t);
-    mpz_clear(s1);
-    mpz_clear(s2);
-    mpz_clear(t1);
-    mpz_clear(t2);
-    mpz_clear(u);
-    mpz_clear(v);
-    mpz_clear(r);
-    mpz_clear(A);
-    mpz_clear(B);
+
   }
   mpz_clear(a);
   mpz_clear(b);
+  mpz_clear(d);
+  mpz_clear(s);
+  mpz_clear(t);
+  mpz_clear(s1);
+  mpz_clear(s2);
+  mpz_clear(t1);
+  mpz_clear(t2);
+  mpz_clear(u);
+  mpz_clear(v);
+  mpz_clear(r);
+  mpz_clear(A);
+  mpz_clear(B);
   return 0;
 }
