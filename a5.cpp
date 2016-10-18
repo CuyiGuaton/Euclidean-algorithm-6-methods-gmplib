@@ -143,8 +143,6 @@ int main(int argc, char const *argv[]) {
 //    mpz_out_str(stdout, 10, B);
     cout << endl;
 
-
-
   }
   mpz_clear(a);
   mpz_clear(b);
