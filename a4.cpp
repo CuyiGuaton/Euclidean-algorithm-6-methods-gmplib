@@ -47,13 +47,8 @@ int main(int argc, char const *argv[]) {
     cout << "Error, a o b no pueden ser 0";
   else {
     while (mpz_cmp_ui(b, 0) != 0) {
-//      mpz_fdiv_q(q, a, b); // fdiv rounds q down towards -infinity
-//      mpz_tdiv_r(r, a, b); // calcula r en a = q*b + r
-
-      mpz_tdiv_q(q, a, b);
-      // r <- a - q*b
-      mpz_mul(aux, q, b);
-      mpz_sub(r, a, aux);
+      mpz_fdiv_q(q, a, b); // fdiv rounds q down towards -infinity
+      mpz_tdiv_r(r, a, b); // calcula r en a = q*b + r, r esta truncado
       // u <- s1 - q*s2
       mpz_mul(aux, q, s2);
       mpz_sub(u, s1, aux);
