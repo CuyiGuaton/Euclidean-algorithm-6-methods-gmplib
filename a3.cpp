@@ -24,19 +24,17 @@ int main(int argc, char const *argv[])
 
 // A y B son pares //-------------------------------------------/
   while ( ( mpz_even_p(a) != 0 ) && ( mpz_even_p(b) != 0 ) )
-  {cout<<"ini_a_b"<<endl;
-
+  {
     mpz_div_ui ( a, a, 2); mpz_div_ui ( b, b, 2); mpz_mul_ui ( d, d, 2);
-
   }
  
   while ( mpz_even_p(a) != 0 )
-  { cout<<"ini_a"<<endl;
+  { 
     mpz_div_ui ( a, a, 2);
   }
  
   while ( mpz_even_p(b) != 0 )
-  { cout<<"ini_b"<<endl;
+  {
     mpz_div_ui ( b, b, 2); 
   }
 
@@ -47,11 +45,11 @@ int main(int argc, char const *argv[])
 // B != 0 //-------------------------------------------/
 
   while ( mpz_cmp_ui ( b,0 ) != 0 )   // Si B != 0
-  { cout<<"ini_b_0"<<endl;
+  { 
     mpz_sub ( r, a, b );
 
     while ( ( mpz_even_p(r) != 0 ) && ( mpz_cmp_ui ( r,0 ) > 0 ) )
-    { cout<<"ini_r"<<endl;
+    { 
       mpz_div_ui ( r, r, 2);
     }
 
