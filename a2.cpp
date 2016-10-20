@@ -18,20 +18,20 @@ int main(int argc, char const *argv[])
 // Decalración
 
 
-  if( argc != 3 ) { cout<<"Solo tiene que ingresar un valor para A y otro para B!"<<endl; }
-  else if( ( mpz_cmp_ui ( a,0 ) < 0 ) || ( mpz_cmp_ui ( b,0 ) < 0 ) ) { cout<<"Error! A y B tienen que ser >= 0 "<<endl; }
+  if( argc != 3 )
+    cout<<"Solo tiene que ingresar un valor para A y otro para B!"<<endl;
+  else if( ( mpz_cmp_ui ( a,0 ) < 0 ) || ( mpz_cmp_ui ( b,0 ) < 0 ) )
+    cout<<"Error! A y B tienen que ser >= 0 "<<endl;
   else{
+    while( mpz_cmp_ui ( b,0 ) != 0 )
+    {
+      mpz_init_set_ui (r,1); mpz_mod ( r, a, b );
 
-  while( mpz_cmp_ui ( b,0 ) != 0 )
-  {
-    mpz_init_set_ui (r,1); mpz_mod ( r, a, b );
+      mpz_init_set (a,b); mpz_init_set (b,r);
 
-    mpz_init_set (a,b); mpz_init_set (b,r);
+    }
 
-  }
-
-  cout<<"Valor de a:";	mpz_out_str(stdout,10,a);  cout<<"\n"<<endl;
-
+  mpz_out_str(stdout,10,a);
   mpz_clear( a_b );
   mpz_clear( a );
   mpz_clear( b );
@@ -40,5 +40,5 @@ int main(int argc, char const *argv[])
   return 0;
 //return i;
 
-      }
+  }
 }
