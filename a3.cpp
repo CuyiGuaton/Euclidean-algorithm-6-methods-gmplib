@@ -5,10 +5,10 @@
 
 using namespace std;
 
-int main(int argc, char const *argv[]) 
+int main(int argc, char const *argv[])
 {
 
-// Decalración 
+// Decalración
 
   mpz_t a, b, r, d;
 
@@ -17,10 +17,9 @@ int main(int argc, char const *argv[])
   mpz_init_set_str (b, argv[2], 10);
 
   if( argc != 3 ) { cout<<"Solo tiene que ingresar un valor para A y otro para B!"<<endl;	}
-  else if( mpz_cmp ( a,b ) < 0 ) { cout<<"Error! A tiene que ser >= que B"<<endl; }
-  else if( mpz_cmp_ui ( b,0 ) < 0 ) { cout<<"Error! B tiene que ser >= 0 "<<endl; } 
+  else if( mpz_cmp_ui ( b,0 ) < 0 ) { cout<<"Error! B tiene que ser >= 0 "<<endl; }
   else if( mpz_cmp_ui ( a,0 ) == 0 ) { cout<<"Error! A tiene que ser distinto de 0 "<<endl; }
-  else{   
+  else{
 
 // A y B son pares //-------------------------------------------/
   while ( ( mpz_even_p(a) != 0 ) && ( mpz_even_p(b) != 0 ) )
@@ -29,15 +28,15 @@ int main(int argc, char const *argv[])
     mpz_div_ui ( a, a, 2); mpz_div_ui ( b, b, 2); mpz_mul_ui ( d, d, 2);
 
   }
- 
+
   while ( mpz_even_p(a) != 0 )
   { cout<<"ini_a"<<endl;
     mpz_div_ui ( a, a, 2);
   }
- 
+
   while ( mpz_even_p(b) != 0 )
   { cout<<"ini_b"<<endl;
-    mpz_div_ui ( b, b, 2); 
+    mpz_div_ui ( b, b, 2);
   }
 
 // B > A //-------------------------------------------/

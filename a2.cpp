@@ -5,7 +5,7 @@
 
 using namespace std;
 
-int main(int argc, char const *argv[]) 
+int main(int argc, char const *argv[])
 {
     mpz_t a, b, r, a_b;
 
@@ -16,13 +16,11 @@ int main(int argc, char const *argv[])
     mpz_add ( a_b, a, b );
 
 // Decalración
- 
+
 
   if( argc != 3 ) { cout<<"Solo tiene que ingresar un valor para A y otro para B!"<<endl; }
-  else if( mpz_cmp ( a,b ) < 0 ) { cout<<"Error! A tiene que ser >= que B"<<endl; }
-  else if( mpz_cmp_ui ( a_b,0 ) <= 0 ) { cout<<"Error! (A+B) tiene que ser > 0 "<<endl; } 
   else if( ( mpz_cmp_ui ( a,0 ) < 0 ) || ( mpz_cmp_ui ( b,0 ) < 0 ) ) { cout<<"Error! A y B tienen que ser >= 0 "<<endl; }
-  else{   
+  else{
 
   while( mpz_cmp_ui ( b,0 ) != 0 )
   {
