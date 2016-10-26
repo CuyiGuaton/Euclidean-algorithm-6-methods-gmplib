@@ -9,8 +9,8 @@ int a1(mpz_t a, mpz_t b)
     while ( mpz_cmp_ui (b, 0) != 0 )
     {
       mpz_sub ( r, a, b );
-      mpz_out_str(stdout, 10, r);
-      printf("\n");
+      // mpz_out_str(stdout, 10, r);
+      // printf("\n");
       if ( mpz_cmp (r, b) >= 0 )
         mpz_set (a,r);
       else {

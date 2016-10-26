@@ -36,7 +36,7 @@ int main(int argc, char const *argv[]) {
   float t;
   float min;
 
-  for(int j=0, nBit = 16; j<=10; j++, nBit=nBit*2){
+  for(int j=0, nBit = 2; j<=10; j++, nBit=nBit*2){
 
     float MAX = 0;
     float min = 10;
@@ -48,8 +48,12 @@ int main(int argc, char const *argv[]) {
       mpz_urandomb(a, state, nBit);
       mpz_add(a,a,piso); // le suma a un número de  2^(nBit) para asegurarse que sea el minimo número a mostrar
       mpz_urandomb(b, state, nBit);
+      mpz_add(b,b,piso); // le suma a un número de  2^(nBit) para asegurarse que sea el minimo número a mostrar
       if(mpz_cmp(b,a)>0) // si b es mayor que a
         mpz_swap(a,b); //entonces cambia los valores para que a sea más grande
+
+      mpz_set(b,a);
+      mpz_sub_ui(b,b,10);
       a1(a,b);
       tEnd = clock();
       t += (double)(tEnd - tStart)/CLOCKS_PER_SEC;
