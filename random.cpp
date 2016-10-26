@@ -5,6 +5,7 @@
 #include <gmp.h>                /* GNU GMP Library       */
 #include <math.h>
 #include <time.h>
+#include "a1.cpp"
 #include "a4.cpp"
 
 
@@ -22,36 +23,43 @@ int main(int argc, char const *argv[]) {
   mpz_init(a);
   mpz_init(b);
   mpz_init(piso);
-  float MAX = 0;
-  nBit = 1200;
-  mpz_ui_pow_ui(piso,2,nBit); // piso= 2^(nBit)
 
+
+  mpz_ui_pow_ui(piso,2,nBit); // piso= 2^(nBit)
   gmp_randinit_default(state);
   gmp_randseed_ui(state, 10);
 
-  bool flag=0;
-	clock_t tStart;
+
+	clock_t tStart, tEnd;
   float t;
+  float min;
 
+  for(int j=0, nBit = 16; j<=10; j++, nBit=nBit*2){
 
-  for(int i = 0; i<=10; i++){
+    float MAX = 0;
+    float min = 10;
+    float t=0;
+    for(int i = 0; i<=20; i++){
 
-    tStart = clock();
+      tStart = clock();
 
-    mpz_urandomb(a, state, nBit);
-    mpz_add(a,a,piso); // le suma a un número de 2^(nBit) para asegurarse que sea el minimo número a mostrar
-    mpz_urandomb(b, state, nBit);
-
-    t += (double)(clock() - tStart)/CLOCKS_PER_SEC;
-
-
-    if(MAX < (double)(clock() - tStart)/CLOCKS_PER_SEC){
-      MAX=(double)(clock() - tStart)/CLOCKS_PER_SEC;
+      mpz_urandomb(a, state, nBit);
+      mpz_add(a,a,piso); // le suma a un número de 2^(nBit) para asegurarse que sea el minimo número a mostrar
+      mpz_urandomb(b, state, nBit);
+      if(mpz_cmp(b,a)>0) // si b es mayor que a
+        mpz_swap(a,b); //entonces cambia los valores para que a sea más grande
+      a4(a,b);
+      tEnd = clock();
+      t += (double)(tEnd - tStart)/CLOCKS_PER_SEC;
+      if(min >(double)(tEnd - tStart)/CLOCKS_PER_SEC)
+        min = (double)(tEnd - tStart)/CLOCKS_PER_SEC;
+      if(MAX < (double)(tEnd - tStart)/CLOCKS_PER_SEC)
+        MAX=(double)(tEnd - tStart)/CLOCKS_PER_SEC;
+      //printf("\n i= %d t =  %.7f", i, (double)(tEnd - tStart)/CLOCKS_PER_SEC);
     }
-    printf("\n i= %d t =  %.7f", i, (double)(clock() - tStart)/CLOCKS_PER_SEC);
-  }
-  printf("\nMAX =  %.7f \n", MAX);
-  printf("\nt =  %.7f \n", t/10);
+    printf("\n %d \t %.7f \t %.7f \t %.7f ",nBit, t/20, MAX,min);
+}
+
   gmp_randclear(state);
   mpz_clear(a);
   mpz_clear(b);

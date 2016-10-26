@@ -4,10 +4,8 @@
 #include "a6.cpp"
 using namespace std;
 
-int main(int argc, char const *argv[]) {
+int a5(mpz_t a, mpz_t b) {
 
-  mpz_t a;
-  mpz_t b;
   mpz_t d;
   mpz_t s;
   mpz_t t;
@@ -22,8 +20,7 @@ int main(int argc, char const *argv[]) {
   mpz_t B;
   mpz_t aux;
 
-  mpz_init(a);
-  mpz_init(b);
+
   mpz_init(d);
   mpz_init(s);
   mpz_init(t);
@@ -38,15 +35,8 @@ int main(int argc, char const *argv[]) {
   mpz_init(B);
   mpz_init(aux);
 
-  mpz_set_str(a, argv[1], 10);
-  mpz_set_str(b, argv[2], 10);
 
-  if (argc != 3)
-    cout << "Error, debe ingresar los parametros a y b de los que sacar el "
-            "mcd(a,b)";
-  else if (mpz_cmp_ui(a, 0) == 0 || mpz_cmp_ui(b, 0) == 0 )
-    cout << "Error, a o b no pueden ser 0";
-  else {
+
     mpz_set_ui(d, 1);
     // si a y b son par.
     while (mpz_even_p(a) != 0 && mpz_even_p(b) != 0) {
@@ -112,23 +102,9 @@ int main(int argc, char const *argv[]) {
     mpz_mul(d, d, a);
     mpz_set(s, s1);
     mpz_set(t, t1);
-    cout << endl;
-    mpz_out_str(stdout, 10, d);
-//    cout << " = ";
-    cout << " ";
-    mpz_out_str(stdout, 10, s);
-//    cout << "*";
-    cout << " ";
-//    mpz_out_str(stdout, 10, A);
-//    cout << " + ";
-    mpz_out_str(stdout, 10, t);
-//    cout << "*";
-//    mpz_out_str(stdout, 10, B);
-    cout << endl;
 
   }
-  mpz_clear(a);
-  mpz_clear(b);
+
   mpz_clear(d);
   mpz_clear(s);
   mpz_clear(t);

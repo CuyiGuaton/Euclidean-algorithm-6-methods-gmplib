@@ -10,9 +10,7 @@ s*a + t*b = gcd(a,b)
 
 using namespace std;
 
-int a4(int argc, char const *argv[]) {
-  mpz_t a;
-  mpz_t b;
+int a4(mpz_t a, mpz_t b) {
   mpz_t d;
   mpz_t s;
   mpz_t s1;
@@ -34,18 +32,11 @@ int a4(int argc, char const *argv[]) {
   mpz_init(s);
   mpz_init(t);
   mpz_init(d);
-  mpz_init_set_str(a, argv[1], 10);
-  mpz_init_set_str(b, argv[2], 10);
   mpz_init_set_ui(s1, 1);
   mpz_init_set_ui(t1, 0);
   mpz_init_set_ui(s2, 0);
   mpz_init_set_ui(t2, 1);
 
-  if (argc != 3)
-    cout << "Error, debe ingresar los parametros a y b de los que sacar el mcd(a,b)";
-  else if (mpz_cmp_ui(a, 0) == 0 || mpz_cmp_ui(b, 0) == 0)
-    cout << "Error, a o b no pueden ser 0";
-  else {
     while (mpz_cmp_ui(b, 0) != 0) {
       mpz_fdiv_q(q, a, b); // fdiv rounds q down towards -infinity
       mpz_tdiv_r(r, a, b); // calcula r en a = q*b + r, r esta truncado
@@ -67,18 +58,8 @@ int a4(int argc, char const *argv[]) {
     mpz_set(d, a);
     mpz_set(s, s1);
     mpz_set(t, t1);
-/*
-    cout << endl;
-    mpz_out_str(stdout, 10, d);
-    cout << " ";
-    mpz_out_str(stdout, 10, s);
-    cout << " ";
-    mpz_out_str(stdout, 10, t);
-    cout << endl;  */
-  }
+
   mpz_clear(v);
-  mpz_clear(a);
-  mpz_clear(b);
   mpz_clear(d);
   mpz_clear(s);
   mpz_clear(s1);

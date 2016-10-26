@@ -5,24 +5,15 @@
 
 using namespace std;
 
-int main(int argc, char const *argv[]) {
+int a3(mpz_t a, mpz_t b) {
 
   // Decalración
 
-  mpz_t a, b, r, d;
+  mpz_t r, d;
 
   mpz_init(r);
   mpz_init_set_ui(d, 1);
-  mpz_init_set_str(a, argv[1], 10);
-  mpz_init_set_str(b, argv[2], 10);
 
-  if (argc != 3)
-    cout << "Solo tiene que ingresar un valor para A y otro para B!" << endl;
-  else if (mpz_cmp_ui(b, 0) < 0)
-    cout << "Error! B tiene que ser >= 0 " << endl;
-  else if (mpz_cmp_ui(a, 0) == 0)
-    cout << "Error! A tiene que ser distinto de 0 " << endl;
-  else {
 
     // A y B son pares //-------------------------------------------/
     while ((mpz_even_p(a) != 0) && (mpz_even_p(b) != 0)) {
@@ -68,16 +59,11 @@ int main(int argc, char const *argv[]) {
 
     mpz_mul(d, d, a);
 
-    mpz_out_str(stdout, 10, d);
 
     // Eliminación de punteros //
-
-    mpz_clear(a);
-    mpz_clear(b);
     mpz_clear(r);
     mpz_clear(d);
 
     return 0;
     // return i;
   }
-}
