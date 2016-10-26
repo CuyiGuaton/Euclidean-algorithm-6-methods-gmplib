@@ -5,7 +5,6 @@
 using namespace std;
 
 int a5(mpz_t a, mpz_t b) {
-
   mpz_t d;
   mpz_t s;
   mpz_t t;
@@ -98,13 +97,6 @@ int a5(mpz_t a, mpz_t b) {
         mpz_set(t2, v);
       }
     }
-
-    mpz_mul(d, d, a);
-    mpz_set(s, s1);
-    mpz_set(t, t1);
-
-  }
-
   mpz_clear(d);
   mpz_clear(s);
   mpz_clear(t);

@@ -6,8 +6,10 @@
 #include <math.h>
 #include <time.h>
 #include "a1.cpp"
+#include "a2.cpp"
+#include "a3.cpp"
 #include "a4.cpp"
-
+#include "a5.cpp"
 
 
 int main(int argc, char const *argv[]) {
@@ -44,11 +46,11 @@ int main(int argc, char const *argv[]) {
       tStart = clock();
 
       mpz_urandomb(a, state, nBit);
-      mpz_add(a,a,piso); // le suma a un número de 2^(nBit) para asegurarse que sea el minimo número a mostrar
+      mpz_add(a,a,piso); // le suma a un número de  2^(nBit) para asegurarse que sea el minimo número a mostrar
       mpz_urandomb(b, state, nBit);
       if(mpz_cmp(b,a)>0) // si b es mayor que a
         mpz_swap(a,b); //entonces cambia los valores para que a sea más grande
-      a4(a,b);
+      a2(a,b);
       tEnd = clock();
       t += (double)(tEnd - tStart)/CLOCKS_PER_SEC;
       if(min >(double)(tEnd - tStart)/CLOCKS_PER_SEC)
