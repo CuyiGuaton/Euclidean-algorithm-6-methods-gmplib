@@ -4,7 +4,8 @@
 #include <stdarg.h>             /* Variable args   ISOC  */
 #include <gmp.h>                /* GNU GMP Library       */
 #include <math.h>
-#include <time.h>
+#include <chrono>
+#include <ctime>
 #include "a1.cpp"
 #include "a2.cpp"
 #include "a3.cpp"
@@ -32,38 +33,39 @@ int main(int argc, char const *argv[]) {
   gmp_randseed_ui(state, 10);
 
 
-	clock_t tStart, tEnd;
+	std::chrono::time_point<std::chrono::system_clock> start, end;
   float t;
   float min;
 
-  for(int j=0, nBit = 2; j<10; j++, nBit=nBit*2){
+  for(int j=0, nBit = 16; j<10; j++, nBit=nBit*2){
 
     float MAX = 0;
-    float min = 10;
+    float min = 1000000000000000;
     float t=0;
     for(int i = 0; i<20; i++){
 
-      tStart = clock();
+
+      start = std::chrono::high_resolution_clock::now();
 
       mpz_urandomb(a, state, nBit);
       mpz_add(a,a,piso); // le suma a un número de  2^(nBit) para asegurarse que sea el minimo número a mostrar
       mpz_urandomb(b, state, nBit);
-      mpz_add(b,b,piso); // le suma a un número de  2^(nBit) para asegurarse que sea el minimo número a mostrar
+      // mpz_add(b,b,piso); // le suma a un número de  2^(nBit) para asegurarse que sea el minimo número a mostrar
       if(mpz_cmp(b,a)>0) // si b es mayor que a
-        mpz_swap(a,b); //entonces cambia los valores para que a sea más grande
-
-      mpz_set(b,a);
-      mpz_sub_ui(b,b,10);
+         mpz_swap(a,b); //entonces cambia los valores para que a sea más grande
+      //
+      // mpz_set(b,a);
+      // mpz_sub_ui(b,b,10);
       a2(a,b);
-      tEnd = clock();
-      t += (double)(tEnd - tStart)/CLOCKS_PER_SEC;
-      if(min >(double)(tEnd - tStart)/CLOCKS_PER_SEC)
-        min = (double)(tEnd - tStart)/CLOCKS_PER_SEC;
-      if(MAX < (double)(tEnd - tStart)/CLOCKS_PER_SEC)
-        MAX=(double)(tEnd - tStart)/CLOCKS_PER_SEC;
-      //printf("\n i= %d t =  %.7f", i, (double)(tEnd - tStart)/CLOCKS_PER_SEC);
+      end = std::chrono::high_resolution_clock::now();
+      t += std::chrono::nanoseconds(end-start).count();
+      if(min >std::chrono::nanoseconds(end-start).count())
+        min = std::chrono::nanoseconds(end-start).count();
+      if(MAX < std::chrono::nanoseconds(end-start).count())
+        MAX=std::chrono::nanoseconds(end-start).count();
+      //printf("\n i= %d t =  %.7f", i, std::chrono::nanoseconds(end-start).count());
     }
-    printf("\n %d \t %.7f \t %.7f \t %.7f ",nBit, t/20, MAX,min);
+    printf("\n %d \t %.0f \t %.0f \t %.0f ",nBit, log2(t/20), log2(MAX),log2(min));
 }
 
   gmp_randclear(state);
