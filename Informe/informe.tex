@@ -104,6 +104,113 @@ Recuperado el #6
 
 \section{Algoritmo Implementado}
 
+A continuación se mostrará que tan eficientes fueron los distintos tipos de algoritmos.
+
+\subsection{Algoritmo Euclidiano Simple}
+
+Este algoritmo demostró ser altamente ineficiente dado que cuando se trabaja con números muy grandes el tiempo requerido es muy alto, a pesar de que su lógica sea muy simple.
+Tiempos de espera para los siguientes gcd:
+\\\\
+gcd(291,252) - 0.0002230 segundos
+\\
+gcd(16261,85652) - 0.0002450 segundos
+\\
+gcd(897279761,914407221) - 0.0009650 segundos
+\\
+gcd(16534528044,8332745927) - 0.0008580 segundos
+\\
+gcd(43263441545690516,43312793054108111) - 0.0068580 segundos
+
+
+\subsection{Algoritmo Euclidiano}
+
+Este algoritmo resultó ser la mejor opción en cuanto a complejidad y eficiencia ya que no demostró una lógica muy complicada ni un tiempo de espera demasiado alto, aunque no halla sido de los que menos tiempo de ejecución requirió.
+\\
+Tiempos de espera para los siguientes gcd:
+\\\\
+gcd(291,252) - 0.0000610 segundos
+\\
+gcd(16261,85652) - 0.0000780 segundos
+\\
+gcd(897279761,914407221) - 0.0000780 segundos
+\\
+gcd(16534528044,8332745927) - 0.0000920 segundos
+\\
+gcd(43263441545690516,43312793054108111) - 0.0000960 segundos
+\\
+gcd(23356764234689876532233456788876543234567,\\
+6277101735386680763835789423207666416083908700390324961279) - 0.0001140 segundos
+\\
+gcd(2123010620889223608977186369097185643295866022\\04480027488784019561937182491149755503041950,\\
+68185362149486650485123987197513787717187652289362\\47143232679847194284772046122091468887714) - 0.0002170 segundos
+
+
+\newpage
+
+\subsection{Algoritmo Euclidiano Binario}
+
+Este algoritmo estubo de entre los más eficientes ya que a pesar de su complejidad fue uno de los más rápidos en ejecutarse.
+\\
+Tiempos de espera para los siguientes gcd:
+\\\\
+gcd(291,252) - 0.0000510 segundos
+\\
+gcd(16261,85652) - 0.0000580 segundos
+\\
+gcd(897279761,914407221) - 0.0000630 segundos
+\\
+gcd(16534528044,8332745927) - 0.0000610 segundos
+\\
+gcd(43263441545690516,43312793054108111) - 0.0000780 segundos
+\\
+gcd(23356764234689876532233456788876543234567,\\
+6277101735386680763835789423207666416083908700390324961279) - 0.0000730 segundos
+\\
+gcd(2123010620889223608977186369097185643295866022\\04480027488784019561937182491149755503041950,\\
+68185362149486650485123987197513787717187652289362\\47143232679847194284772046122091468887714) - 0.0001170 segundos
+
+\subsection{Algoritmo Euclidiano Extendido}
+
+Este sin duda resultó ser el algoritmo con tiempo de espera más corto haciendolo el más eficiente de todos los evaluados anteriormente.
+Tiempos de espera para los siguientes gcd:
+\\\\
+gcd(291,252) - 0.0000350 segundos
+\\
+gcd(16261,85652) - 0.0000340 segundos
+\\
+gcd(897279761,914407221) - 0.0000360 segundos
+\\
+gcd(16534528044,8332745927) - 0.0000400 segundos
+\\
+gcd(43263441545690516,43312793054108111) - 0.0000410 segundos
+\\
+gcd(23356764234689876532233456788876543234567,\\
+6277101735386680763835789423207666416083908700390324961279) - 0.0000700 segundos
+\\
+gcd(2123010620889223608977186369097185643295866022\\04480027488784019561937182491149755503041950,\\
+68185362149486650485123987197513787717187652289362\\47143232679847194284772046122091468887714) - 0.0001410 segundos
+
+\newpage
+\subsection{Algoritmo Euclidiano Extendido Binario}
+
+Pese que con números de pocas unidades el programa tiene un tiempo de ejecución a la par con el resto de algoritmos, cuando se utilizan números con muchas cifras ( > 10 ) ya el tiempo de espera se dispara quedando bastante atrás con respecto a sus otras opciones.
+Tiempos de espera para los siguientes gcd:
+\\\\
+gcd(291,252) - 0.0000390 segundos
+\\
+gcd(16261,85652) - 0.0000420 segundos
+\\
+gcd(897279761,914407221) - 0.0000570 segundos
+\\
+gcd(16534528044,8332745927) - 0.0000620 segundos
+\\
+gcd(43263441545690516,43312793054108111) - 0.0000910 segundos
+\\
+gcd(23356764234689876532233456788876543234567,\\
+6277101735386680763835789423207666416083908700390324961279) - 0.0002210 segundos
+\\
+gcd(2123010620889223608977186369097185643295866022\\04480027488784019561937182491149755503041950,\\
+68185362149486650485123987197513787717187652289362\\47143232679847194284772046122091468887714) - 0.0004830 segundos
 
 \newpage
 \section{Formulación experimentos}
