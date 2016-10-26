@@ -48,7 +48,6 @@ int main(int argc, char const *argv[]) {
     cout << "Error, a o b no pueden ser 0";
   else {
     mpz_set_ui(d, 1);
-
     // si a y b son par.
     while (mpz_even_p(a) != 0 && mpz_even_p(b) != 0) {
       mpz_tdiv_q_ui(a, a, 2); // a=a/2 trunca el resultado

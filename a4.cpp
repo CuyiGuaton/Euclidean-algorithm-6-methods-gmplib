@@ -67,14 +67,14 @@ int main(int argc, char const *argv[]) {
     mpz_set(d, a);
     mpz_set(s, s1);
     mpz_set(t, t1);
-
+/*
     cout << endl;
     mpz_out_str(stdout, 10, d);
     cout << " ";
     mpz_out_str(stdout, 10, s);
     cout << " ";
     mpz_out_str(stdout, 10, t);
-    cout << endl;
+    cout << endl;  */
   }
   mpz_clear(v);
   mpz_clear(a);
