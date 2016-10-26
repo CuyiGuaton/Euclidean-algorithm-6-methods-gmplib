@@ -36,12 +36,12 @@ int main(int argc, char const *argv[]) {
   float t;
   float min;
 
-  for(int j=0, nBit = 2; j<=10; j++, nBit=nBit*2){
+  for(int j=0, nBit = 2; j<10; j++, nBit=nBit*2){
 
     float MAX = 0;
     float min = 10;
     float t=0;
-    for(int i = 0; i<=20; i++){
+    for(int i = 0; i<20; i++){
 
       tStart = clock();
 
@@ -54,7 +54,7 @@ int main(int argc, char const *argv[]) {
 
       mpz_set(b,a);
       mpz_sub_ui(b,b,10);
-      a1(a,b);
+      a2(a,b);
       tEnd = clock();
       t += (double)(tEnd - tStart)/CLOCKS_PER_SEC;
       if(min >(double)(tEnd - tStart)/CLOCKS_PER_SEC)
