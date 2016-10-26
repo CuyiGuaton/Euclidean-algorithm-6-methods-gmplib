@@ -50,7 +50,7 @@ int main(int argc, char const *argv[]) {
       mpz_urandomb(b, state, nBit);
       if(mpz_cmp(b,a)>0) // si b es mayor que a
         mpz_swap(a,b); //entonces cambia los valores para que a sea más grande
-      a2(a,b);
+      a1(a,b);
       tEnd = clock();
       t += (double)(tEnd - tStart)/CLOCKS_PER_SEC;
       if(min >(double)(tEnd - tStart)/CLOCKS_PER_SEC)
