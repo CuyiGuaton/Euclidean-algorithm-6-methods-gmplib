@@ -10,7 +10,7 @@ s*a + t*b = gcd(a,b)
 
 using namespace std;
 
-int main(int argc, char const *argv[]) {
+int a4(int argc, char const *argv[]) {
   mpz_t a;
   mpz_t b;
   mpz_t d;

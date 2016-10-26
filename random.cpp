@@ -1,52 +1,56 @@
-/**
-   @file      gmpRandEx.c
-   @author    Mitch Richling <https://www.mitchr.me/>
-   @Copyright Copyright 1999 by Mitch Richling.  All rights reserved.
-   @brief     Example showing how to use the GMP random number generator.@EOL
-   @Keywords  none
-   @Std       C89
-
-              The GMP contains a simple random number generator that
-              is not suitable for simulation work, but is good enough
-              for things like checking arithmetic algorithms and the
-              like.
-*/
 
 #include <stdlib.h>             /* Standard Lib    ISOC  */
 #include <stdio.h>              /* I/O lib         ISOC  */
 #include <stdarg.h>             /* Variable args   ISOC  */
 #include <gmp.h>                /* GNU GMP Library       */
+#include <math.h>
+#include <time.h>
+
 #include "a4.cpp"
 
-int main (void) {
-  int             i;            /* Loop variable */
-  mpz_t           randNum;      /* Hold our random numbers */
-  int             rndBit;       /* Bound for mpz_urandomb */
-  mpz_t           rndBnd;       /* Bound for mpz_urandomm */
-  gmp_randstate_t gmpRandState; /* Random generator state object */
 
-  /* Initialize randNum before we use it. */
-  mpz_init(randNum);
 
-  /* Initialize Bounds */
-  rndBit = 1000000;
-  mpz_init_set_str(rndBnd, "1000", 10);
+int main(int argc, char const *argv[]) {
+  mpz_t a; // Random number a
+  mpz_t b; // random number b
+  mpz_t piso;
+  int nBit; // 2^(nbit) cantidad de bits
+  gmp_randstate_t state;
+  gmp_randstate_t stateb;
+  // a y b van a contener números random
+  mpz_init(a);
+  mpz_init(b);
+  mpz_init(piso);
+  nBit = 12;
+  mpz_ui_pow_ui(piso,2,nBit); // piso= 2^(nBit)
 
-  /* Initialize the random state with default algorithm... */
-  gmp_randinit_default(gmpRandState);
-  gmp_randseed_ui(gmpRandState, 1234567890);
+  gmp_randinit_default(state);
+  gmp_randseed_ui(state, 10);
 
-  printf("10 random numbers in U[0, -1+2**%d]:\n", rndBit);
-  for(i=0; i<10; i++) {
-    mpz_urandomb(randNum, gmpRandState, rndBit);
-    mpz_out_str(stdout, 10, randNum);
-    printf("\n");
-  } /* end for */
+	clock_t tStart;
+  float t;
+  tStart = clock();
 
-  gmp_randclear(gmpRandState);
+  for(int i = 0; i<=10; i++){
 
-  mpz_clear(randNum);
-  mpz_clear(rndBnd);
+    cout<<"a = ";
+    mpz_urandomb(a, state, nBit);
+    mpz_add(a,a,piso); // le suma a un número de 2^(nBit) para asegurarse que sea el minimo número a mostrar
+    mpz_out_str(stdout, 10, a);
+
+    cout<<"\t b = ";
+    mpz_urandomb(b, state, nBit);
+    mpz_out_str(stdout, 10, b);
+    cout<<endl;
+    t = (double)(clock() - tStart)/CLOCKS_PER_SEC;
+  }
+  
+  printf("\nt =  %.7f \n", t);
+  gmp_randclear(state);
+  mpz_clear(a);
+  mpz_clear(b);
+  mpz_clear(piso);
 
   return 0;
-} /* end func main */
+
+}
