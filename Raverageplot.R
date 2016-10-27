@@ -9,7 +9,7 @@ for(i in 2:5){
   library(ggplot2) 
   plots <-ggplot(tabla, aes(x=names, y=mean)) + 
     geom_errorbar(aes(ymin=min, ymax=max), width=.5) +  geom_point() + ggtitle(paste("Algoritmo ",i,sep="")) +
-    labs(x="bits",y="Tiempo") +
+    labs(x="bits",y="Tiempo en nanosegundos") +
     theme_bw() +
     theme(axis.line = element_line(colour = "black"),
           panel.grid.major = element_blank(),
